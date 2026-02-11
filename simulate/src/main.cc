@@ -675,7 +675,7 @@ int main(int argc, char **argv)
   param::config.load_from_yaml(proj_dir / "config.yaml");
   param::helper(argc, argv);
   if(param::config.robot_scene.is_relative()) {
-    param::config.robot_scene = proj_dir.parent_path() / "unitree_robots" / param::config.robot / param::config.robot_scene;
+    param::config.robot_scene = proj_dir.parent_path() / "robot_description" / param::config.robot / param::config.robot_scene;
   }
 
   // simulate object encapsulates the UI

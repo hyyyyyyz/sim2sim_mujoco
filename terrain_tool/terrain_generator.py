@@ -5,7 +5,7 @@ import noise
 
 ROBOT = "go2"
 INPUT_SCENE_PATH = "./scene.xml"
-OUTPUT_SCENE_PATH = "../unitree_robots/" + ROBOT + "/scene_terrain.xml"
+OUTPUT_SCENE_PATH = "../robot_description/" + ROBOT + "/scene_terrain.xml"
 
 
 # zyx euler angle to quaternion
@@ -200,7 +200,7 @@ class TerrainGenerator:
                                             lacunarity=perlin_lacunarity)
                 terrain_image[y, x] = int((noise_value + 1) / 2 * 255)
 
-        cv2.imwrite("../unitree_robots/" + ROBOT + "/" + output_hfield_image,
+        cv2.imwrite("../robot_description/" + ROBOT + "/" + output_hfield_image,
                     terrain_image)
 
         hfield = xml_et.SubElement(self.asset, "hfield")
@@ -237,7 +237,7 @@ class TerrainGenerator:
         terrain_image = cv2.cvtColor(resized_image, cv2.COLOR_BGR2GRAY)
         if invert_gray:
             terrain_image = 255 - position
-        cv2.imwrite("../unitree_robots/" + ROBOT + "/" + output_hfield_image,
+        cv2.imwrite("../robot_description/" + ROBOT + "/" + output_hfield_image,
                     terrain_image)
 
         hfield = xml_et.SubElement(self.asset, "hfield")

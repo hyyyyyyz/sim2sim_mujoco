@@ -1,14 +1,14 @@
-ROBOT = "go2" # Robot name, "go2", "b2", "b2w", "h1", "go2w", "g1" 
-ROBOT_SCENE = "../unitree_robots/" + ROBOT + "/scene.xml" # Robot scene
-DOMAIN_ID = 1 # Domain id
-INTERFACE = "lo" # Interface 
+ROBOT = "go2"  # 机器人型号，目前只有 "go2"
+ROBOT_SCENE = "../robot_description/" + ROBOT + "/scene.xml"  # 机器人场景文件路径
+DOMAIN_ID = 1  # 域 ID
+INTERFACE = "lo"  # 网络接口
 
-USE_JOYSTICK = 1 # Simulate Unitree WirelessController using a gamepad
-JOYSTICK_TYPE = "xbox" # support "xbox" and "switch" gamepad layout
-JOYSTICK_DEVICE = 0 # Joystick number
+USE_JOYSTICK = 1  # 使是否用手柄模拟 Unitree 无线控制器
+JOYSTICK_TYPE = "xbox"  # 支持的手柄布局："xbox" 或 "switch"
+JOYSTICK_DEVICE = 0  # 手柄设备编号
 
-PRINT_SCENE_INFORMATION = True # Print link, joint and sensors information of robot
-ENABLE_ELASTIC_BAND = False # Virtual spring band, used for lifting h1
+PRINT_SCENE_INFORMATION = True  # 打印机器人连杆、关节和传感器信息
+ENABLE_ELASTIC_BAND = False  # 虚拟弹性带，h1 抬升时使用
 
-SIMULATE_DT = 0.005  # Need to be larger than the runtime of viewer.sync()
-VIEWER_DT = 0.02  # 50 fps for viewer
+SIMULATE_DT = 0.005  # 模拟步长，需大于 viewer.sync() 的运行时间
+VIEWER_DT = 0.02  # 可视化步长（50 FPS）

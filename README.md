@@ -1,9 +1,7 @@
 
 # 介绍
-## Unitree mujoco
-`unitree_mujoco` 是基于 `Unitree sdk2` 和 `mujoco` 开发的仿真器。用户使用 `Unitree_sdk2`、 `unitree_ros2` 和 `unitree_sdk2_python` 开发的控制程序可以方便地接入该仿真器，实现仿真到实物的开发流程。仓库别基于 c++ 和 python 实现了两个版本的仿真器， 其结构大致如下图所示:
-
-![](./doc/func.png)
+## sim2sim mujoco
+仓库分别基于 c++ 和 python 实现了两个版本的仿真器，模仿[unitree_mujoco](https://github.com/unitreerobotics/unitree_mujoco)实现，主要为了能够满足无unitree sdk的自研四足机器人的sim2sim部署迁移
 
 ## 目录结构
 - `simulate`: 基于 unitree_sdk2 和 mujoco (c++) 实现的仿真器（推荐）
@@ -26,13 +24,6 @@
 注：
  1. 电机的编号与机器人实物一致，具体可参考 [Unitree 文档](https://support.unitree.com/home/zh/developer)
  2. 在机器人实物上关闭自带的运控服务后， `SportModeState` 消息是无法读取的。仿真中保留了这一消息，便于用户利用位置和速度信息分析所开发的控制程序。
-
-## 相关链接
-- [unitree_sdk2](https://github.com/unitreerobotics/unitree_sdk2)
-- [unitree_sdk2_python](https://github.com/unitreerobotics/unitree_sdk2_python)
-- [unitree_ros2](https://github.com/unitreerobotics/unitree_ros2)
-- [Unitree 文档](https://support.unitree.com/home/zh/developer)
-- [mujoco doc](https://mujoco.readthedocs.io/en/stable/overview.html)
 
 # 安装
 ## c++ 仿真器 (simulate)
@@ -243,76 +234,11 @@ if js_type == "xbox":
 我们提供了一个在 mujoco 仿真器中参数化创建简单地形的工具，支持添加楼梯、杂乱地面、高程图等地形。程序位于 `terrain_tool` 文件夹中。具体的使用方法见 `terrain_tool` 文件夹下的 readme 文件。
 ![](./doc/terrain.png)
 
-## 3. sim to real
-`example` 文件夹下提供了使用不同接口实现 Go2 机器人站起再趴下的简单例子。这些例子简演示了如何使用 Unitree 提供的接口实现仿真到实物的实现。下面是每个文件夹名称的解释：
-- `cpp`: 基于 `C++`, 使用 `unitree_sdk2` 接口
-- `python`: 基于 `python`，使用 `unitree_sdk2_python` 接口
-- `ros2`: 基于`ros2`，使用 `unitree_ros2` 接口
 
-### unitree_sdk2 
-1. 编译运行
-```bash
-cd example/cpp
-mkdir build && cd build
-cmake ..
-make -j4
-```
-运行：
-```bash
-./stand_go2 # 控制仿真中的机器人 (需确保 Go2 仿真场景已经加载)
-./stand_go2 enp3s0 # 控制机器人实物，其中 enp3s0 为机器人所连接的网卡名称
-```
-
-2. sim to real
-```C++
-if (argc < 2)
-{   
-    // 如果没有输入网卡，使用仿真的 domian id 和 网卡(本地)
-    ChannelFactory::Instance()->Init(1, "lo");
-}
-else
-{   
-    // 否则使用指定的网卡
-    ChannelFactory::Instance()->Init(0, argv[1]);
-}
-```
-
-### unitree_sdk2_python
-1. 运行：
-```bash
-python3 ./stand_go2.py # 控制仿真中的机器人 (需确保 Go2 仿真场景已经加载)
-python3 ./stand_go2.py enp3s0 # 控制机器人实物，其中 enp3s0 为机器人所连接的网卡名称
-```
-2. sim to real
-
-```python
-if len(sys.argv) <2:
-    // 如果没有输入网卡，使用仿真的 domian id 和 网卡(本地)
-    ChannelFactoryInitialize(1, "lo")
-else:
-    // 否则使用指定的网卡
-    ChannelFactoryInitialize(0, sys.argv[1])
-```
-### unitree_ros2
-
-1. 编译安装
-首先确保已经正确配置好 unitree_ros2 环境，见 [unitree_ros2](https://github.com/unitreerobotics/unitree_ros2)。
-```bash
-source ~/unitree_ros2/setup.sh
-cd example/ros2
-colcon build
-```
-
-2. 运行仿真
-```bash
-source ~/unitree_ros2/setup_local.sh # 使用本地网卡
-export ROS_DOMAIN_ID=1 # 修改domain id 与仿真一致
-./install/stand_go2/bin/stand_go2 # 运行
-```
-
-3. 运行实物
-```bash
-source ~/unitree_ros2/setup.sh # 使用机器人连接的网卡
-export ROS_DOMAIN_ID=0 # 使用默认的 domain id 
-./install/stand_go2/bin/stand_go2 # 运行
-```
+## Thanks
+- [unitree_mujoco](https://github.com/unitreerobotics/unitree_mujoco)
+- [unitree_sdk2](https://github.com/unitreerobotics/unitree_sdk2)
+- [unitree_sdk2_python](https://github.com/unitreerobotics/unitree_sdk2_python)
+- [unitree_ros2](https://github.com/unitreerobotics/unitree_ros2)
+- [Unitree 文档](https://support.unitree.com/home/zh/developer)
+- [mujoco doc](https://mujoco.readthedocs.io/en/stable/overview.html)
