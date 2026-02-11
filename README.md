@@ -232,7 +232,6 @@ if js_type == "xbox":
 
 ## 2. 地形生成工具
 我们提供了一个在 mujoco 仿真器中参数化创建简单地形的工具，支持添加楼梯、杂乱地面、高程图等地形。程序位于 `terrain_tool` 文件夹中。具体的使用方法见 `terrain_tool` 文件夹下的 readme 文件。
-![](./doc/terrain.png)
 
 
 ## Thanks
