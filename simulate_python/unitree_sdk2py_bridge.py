@@ -305,14 +305,14 @@ class UnitreeSdk2Bridge:
 
         if js_type == "xbox":
             self.axis_id = {
-                "LX": 0,  # Left stick axis x
-                "LY": 1,  # Left stick axis y
-                "RX": 3,  # Right stick axis x
-                "RY": 4,  # Right stick axis y
-                "LT": 2,  # Left trigger
-                "RT": 5,  # Right trigger
-                "DX": 6,  # Directional pad x
-                "DY": 7,  # Directional pad y
+                "LX": 0,  # 左遥感 x
+                "LY": 1,  # 左遥感 y
+                "RX": 3,  # 右遥感 x
+                "RY": 4,  # 右遥感 y
+                "LT": 2,  # 左扳机
+                "RT": 5,  # 右扳机
+                "DX": 6,  # 方向键 x
+                "DY": 7,  # 方向键 y
             }
 
             self.button_id = {
@@ -328,14 +328,14 @@ class UnitreeSdk2Bridge:
 
         elif js_type == "switch":
             self.axis_id = {
-                "LX": 0,  # Left stick axis x
-                "LY": 1,  # Left stick axis y
-                "RX": 2,  # Right stick axis x
-                "RY": 3,  # Right stick axis y
-                "LT": 5,  # Left trigger
-                "RT": 4,  # Right trigger
-                "DX": 6,  # Directional pad x
-                "DY": 7,  # Directional pad y
+                "LX": 0,  # 左遥感 x
+                "LY": 1,  # 左遥感 y
+                "RX": 2,  # 右遥感 x
+                "RY": 3,  # 右遥感 y
+                "LT": 5,  # 左扳机
+                "RT": 4,  # 右扳机
+                "DX": 6,  # 方向键 x
+                "DY": 7,  # 方向键 y
             }
 
             self.button_id = {
